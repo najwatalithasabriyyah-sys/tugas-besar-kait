@@ -1,0 +1,32 @@
+/* ============================================================
+   Nat's Collection — Dark Mode
+   Diaktifkan dengan class .dark-mode di <body> (lihat js/darkmode.js)
+   ============================================================ */
+
+body.dark-mode {
+  --ink: #F3E8DE;
+  --ink-70: #D8C7B8;
+  --paper: #201814;
+  --paper-2: #2A211B;
+  --line: #453832;
+  --white: #2A211B;
+  --gold: #D6A08C;
+  --gold-dark: #E8B79F;
+  --teal: #B49A87;
+}
+
+body.dark-mode .nav { background: var(--paper); border-color: var(--line); }
+body.dark-mode .btn-primary { color: #201814; }
+body.dark-mode .btn-secondary { border-color: var(--ink); color: var(--ink); }
+body.dark-mode .btn-secondary:hover { background: var(--ink); color: var(--paper); }
+body.dark-mode footer { background: #17110D; }
+body.dark-mode .hero-visual svg rect:first-child { fill: #17110D; }
+body.dark-mode .pay-option:has(input:checked) { background: #332720; }
+body.dark-mode .icon-btn, body.dark-mode .newsletter-form input { background: var(--paper-2); color: var(--ink); }
+body.dark-mode ::selection { background: var(--gold); color: #201814; }
+
+/* Dark mode toggle icon swap */
+.dm-icon-moon { display: inline; }
+.dm-icon-sun { display: none; }
+body.dark-mode .dm-icon-moon { display: none; }
+body.dark-mode .dm-icon-sun { display: inline; }
