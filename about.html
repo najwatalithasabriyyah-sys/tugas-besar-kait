@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tentang Kami — Nat's Collection</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/darkmode.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<header id="site-header"></header>
+
+<section class="section">
+  <div class="container">
+    <span class="eyebrow">Tentang Kami</span>
+    <h1 style="font-size:clamp(1.9rem,3vw,2.6rem)">Nat's Collection</h1>
+    <p class="lead">Toko daring hijab yang fokus pada tiga kategori inti — bergo instan, pasmina crinkle, dan segi empat — dengan bahan pilihan, harga bersahabat, dan pengalaman belanja yang mudah dari genggaman tangan.</p>
+
+    <div class="stat-grid">
+      <div class="stat-card"><div class="num">3</div><div class="label">Kategori hijab andalan</div></div>
+      <div class="stat-card"><div class="num">10+</div><div class="label">Varian warna siap kirim</div></div>
+      <div class="stat-card"><div class="num">4.7</div><div class="label">Rata-rata rating pelanggan</div></div>
+    </div>
+
+    <div class="about-block">
+      <h2>Value Proposition</h2>
+      <p>Nat's Collection menghadirkan hijab sehari-hari dengan kualitas bahan yang konsisten — jersey premium adem untuk bergo instan, serta crinkle ringan dan jatuh lembut untuk pasmina dan segi empat. Kami sengaja membatasi diri pada tiga kategori inti agar setiap produk benar-benar dikurasi, bukan sekadar dijual banyak-banyak. Pembeli mendapat kepastian bahan, warna yang akurat sesuai foto, dan proses belanja online yang cepat dari lihat produk sampai bayar.</p>
+
+      <h2>Target Market &amp; Segmentasi Pelanggan</h2>
+      <p>Tiga segmen utama kami:</p>
+      <ul style="list-style:disc;padding-left:22px;margin-bottom:1em">
+        <li><strong>Pelajar & pekerja muda</strong> (usia 17–30) yang mencari hijab praktis untuk dipakai setiap hari — bergo instan tanpa ribet, warna netral yang mudah dipadupadankan.</li>
+        <li><strong>Ibu bekerja & profesional</strong> (usia 25–45) yang mengutamakan bahan adem dan tampilan rapi tanpa perlu banyak waktu bersiap.</li>
+        <li><strong>Pecinta fashion hijab</strong> yang senang bereksperimen dengan gaya styling pasmina dan segi empat untuk acara kasual maupun semi-formal.</li>
+      </ul>
+
+      <h2>Analisis Pasar Singkat &amp; Kompetitor</h2>
+      <p>Pasar hijab di Indonesia sangat besar dan kompetitif, didorong oleh populasi muslimah yang terus mencari variasi gaya berhijab. Kompetitor mencakup brand hijab nasional dengan katalog sangat luas, serta reseller/toko rumahan di media sosial dan marketplace umum (Shopee, Tokopedia) yang bersaing lewat harga. Diferensiasi Nat's Collection terletak pada fokus kategori yang jelas (bergo, pasmina, segi empat), konsistensi kualitas bahan, dan pengalaman belanja daring yang ringkas — dari katalog, keranjang, hingga checkout dalam beberapa langkah saja.</p>
+
+      <h2>Strategi Manajemen Produk &amp; Katalog</h2>
+      <p>Produk dikelompokkan ke dalam tiga kategori inti (lihat halaman Katalog) agar navigasi tetap sederhana. Setiap listing memuat: nama produk, warna, bahan, rating, stok, dan tag pencarian (mis. "jersey", "crinkle", "rumbai") supaya mudah difilter. Foto produk menggunakan foto asli di atas mannequin/produk flatlay yang konsisten agar katalog terasa satu kesatuan brand meski warna dan kategori berbeda-beda.</p>
+
+      <h2>Model Bisnis &amp; Revenue Stream</h2>
+      <p>Model utama adalah <strong>penjualan langsung (direct-to-consumer)</strong> melalui toko daring ini. Revenue tambahan berasal dari: (1) bundling lintas kategori (mis. bergo + pasmina senada), (2) penjualan lewat media sosial dan live shopping yang mengarahkan pembeli ke katalog ini, dan (3) program reseller/dropship bagi pelanggan yang ingin ikut menjual koleksi Nat's Collection.</p>
+
+      <h2>Strategi Harga, Promosi, dan Diskon</h2>
+      <p>Harga ditetapkan flat per kategori (bergo, pasmina, segi empat) agar transparan dan mudah dibandingkan pelanggan. Strategi promosi meliputi kode diskon (contoh yang disimulasikan di keranjang: <code>NATSC10</code> untuk 10%, <code>HIJAB20</code> untuk 20% saat kampanye khusus), gratis ongkir untuk belanja di atas Rp150.000, dan bundling warna senada lintas kategori.</p>
+
+      <h2>Proses Checkout &amp; Simulasi Payment Gateway</h2>
+      <p>Alur checkout dua langkah: (1) Keranjang — pengguna meninjau item, mengubah kuantitas, dan menerapkan kode promo; (2) Checkout — pengguna mengisi data pengiriman dan memilih metode pembayaran. Pada purwarupa ini, integrasi payment gateway disimulasikan mengikuti pola <strong>Midtrans</strong>: <strong>QRIS</strong> (kode QR dinamis dengan hitung mundur kedaluwarsa) sebagai metode utama, ditambah Virtual Account (BCA/BNI/BRI/Mandiri), E-Wallet (GoPay/OVO/DANA/ShopeePay), dan Kartu Kredit/Debit, lengkap dengan validasi format input. Pada produksi nyata, langkah ini akan digantikan dengan Midtrans Snap API yang menghasilkan kode QRIS/token pembayaran sungguhan dan notifikasi status via webhook.</p>
+
+      <h2>Rencana SEO, Keamanan, dan Pemeliharaan</h2>
+      <ul style="list-style:disc;padding-left:22px;margin-bottom:1em">
+        <li><strong>SEO:</strong> URL deskriptif per kategori/produk, meta description unik, struktur heading semantik, gambar dengan atribut alt yang menyebut nama & warna produk, serta konten blog gaya styling hijab untuk kata kunci long-tail (mis. "cara pakai pasmina segi empat").</li>
+        <li><strong>Keamanan:</strong> HTTPS wajib di seluruh domain, validasi input di sisi klien dan server, sanitasi data sebelum disimpan, serta payment gateway pihak ketiga bersertifikasi PCI-DSS sehingga data kartu tidak pernah disimpan di server kami.</li>
+        <li><strong>Pemeliharaan:</strong> audit performa halaman & broken link bulanan, backup data mingguan, dan pembaruan dependensi/keamanan berkala.</li>
+      </ul>
+
+      <h2>Rencana Penggunaan Data Analytics</h2>
+      <p>Metrik dari Google Analytics (lihat <code>js/analytics.js</code>) — bounce rate, conversion rate, add-to-cart rate, cart abandonment, rata-rata nilai pesanan, dan kata kunci pencarian internal — ditinjau tiap dua minggu untuk: memprioritaskan warna/kategori yang perlu ditambah stok, menyesuaikan copywriting halaman dengan bounce rate tinggi, menargetkan ulang pengguna yang meninggalkan keranjang lewat promo, dan mengukur efektivitas kode diskon serta metode pembayaran QRIS terhadap kenaikan conversion rate.</p>
+    </div>
+  </div>
+</section>
+
+<footer id="site-footer"></footer>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/data.js"></script>
+<script src="js/analytics.js"></script>
+<script src="js/script.js"></script>
+<script src="js/products.js"></script>
+<script src="js/darkmode.js"></script>
+<script>
+  renderHeader("about.html");
+  renderFooter();
+</script>
+</body>
+</html>
