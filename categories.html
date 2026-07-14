@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Katalog Produk — Nat's Collection</title>
+<meta name="description" content="Jelajahi seluruh koleksi bergo instan, pasmina crinkle, dan segi empat premium Nat's Collection.">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/darkmode.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<header id="site-header"></header>
+
+<section class="section" style="padding-bottom:0">
+  <div class="container">
+    <span class="eyebrow">Katalog</span>
+    <h1 style="font-size:clamp(1.9rem,3vw,2.6rem)">Semua Produk</h1>
+    <p class="lead" style="margin-bottom:0">Gunakan filter di samping atau kolom pencarian untuk menemukan hijab yang Anda cari.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container catalog-layout">
+    <aside class="filter-panel">
+      <div class="filter-group">
+        <h4>Kategori</h4>
+        <div id="cat-filter-list"></div>
+      </div>
+      <div class="filter-group">
+        <h4>Rentang Harga (Rp)</h4>
+        <div class="price-inputs">
+          <input type="number" id="price-min" placeholder="Min" min="0" step="10000">
+          <span>–</span>
+          <input type="number" id="price-max" placeholder="Max" min="0" step="10000">
+        </div>
+      </div>
+    </aside>
+
+    <div>
+      <div class="catalog-toolbar">
+        <div class="catalog-search">
+          <span aria-hidden="true">🔍</span>
+          <input type="search" id="catalog-search-input" placeholder="Cari nama produk...">
+        </div>
+        <div style="display:flex;align-items:center;gap:14px">
+          <span class="muted" id="result-count" style="font-size:.85rem"></span>
+          <select id="sort-select" class="sort-select">
+            <option value="popular">Terpopuler</option>
+            <option value="price-asc">Harga: Rendah ke Tinggi</option>
+            <option value="price-desc">Harga: Tinggi ke Rendah</option>
+            <option value="rating">Rating Tertinggi</option>
+          </select>
+        </div>
+      </div>
+      <div class="product-grid" id="catalog-grid"></div>
+    </div>
+  </div>
+</section>
+
+<footer id="site-footer"></footer>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/data.js"></script>
+<script src="js/analytics.js"></script>
+<script src="js/script.js"></script>
+<script src="js/products.js"></script>
+<script src="js/darkmode.js"></script>
+<script>
+  renderHeader("categories.html");
+  renderFooter();
+</script>
+</body>
+</html>
