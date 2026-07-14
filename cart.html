@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keranjang Belanja — Nat's Collection</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/darkmode.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<header id="site-header"></header>
+
+<section class="section">
+  <div class="container">
+    <span class="eyebrow">Langkah 1 dari 2</span>
+    <h1 style="font-size:clamp(1.9rem,3vw,2.6rem)">Keranjang Belanja</h1>
+
+    <div class="cart-layout mt-lg">
+      <div>
+        <div id="cart-items"></div>
+        <div id="cart-empty" class="empty-state" style="display:none">
+          <h3>Keranjang Anda masih kosong</h3>
+          <p>Yuk mulai jelajahi koleksi hijab pilihan kami.</p>
+          <a href="categories.html" class="btn btn-primary">Mulai Belanja</a>
+        </div>
+      </div>
+
+      <aside class="summary-box" id="summary-box">
+        <h3>Ringkasan Pesanan</h3>
+        <div class="summary-row"><span>Subtotal</span><span id="sum-subtotal">Rp0</span></div>
+        <div class="summary-row"><span>Ongkos Kirim</span><span id="sum-shipping">Rp0</span></div>
+        <p class="muted" style="font-size:.78rem;margin:-6px 0 10px">Gratis ongkir untuk belanja Rp150.000 ke atas.</p>
+        <div class="summary-row" id="sum-discount-row" style="display:none;color:var(--teal)"><span>Diskon</span><span id="sum-discount">-Rp0</span></div>
+        <div class="promo-row">
+          <input type="text" id="promo-input" placeholder="Kode promo (coba: NATSC10)">
+          <button class="btn btn-ghost btn-sm" id="promo-apply">Pakai</button>
+        </div>
+        <div class="summary-row total"><span>Total</span><span id="sum-total">Rp0</span></div>
+        <button class="btn btn-primary btn-block" id="checkout-btn">Lanjut ke Checkout</button>
+        <a href="categories.html" class="btn btn-ghost btn-block" style="margin-top:8px">Lanjut Belanja</a>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<footer id="site-footer"></footer>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/data.js"></script>
+<script src="js/analytics.js"></script>
+<script src="js/script.js"></script>
+<script src="js/products.js"></script>
+<script src="js/darkmode.js"></script>
+<script>
+  renderHeader("cart.html");
+  renderFooter();
+
+  const SHIPPING_FLAT = 15000;
+  const FREE_SHIPPING_MIN = 150000;
+  const PROMO_CODES = { "NATSC10": 0.10, "HIJAB20": 0.20 };
+  let appliedDiscountRate = 0;
+
+  function renderCart() {
+    const cart = getCart();
+    const wrap = document.getElementById("cart-items");
+    const empty = document.getElementById("cart-empty");
+    const summary = document.getElementById("summary-box");
+
+    if (cart.length === 0) {
+      wrap.innerHTML = "";
+      empty.style.display = "block";
+      summary.style.display = "none";
+      updateSummary();
+      return;
+    }
+    empty.style.display = "none";
+    summary.style.display = "block";
+
+    wrap.innerHTML = cart.map(item => {
+      const p = getProductById(item.id);
+      if (!p) return "";
+      return `
+        <div class="cart-item" data-id="${p.id}">
+          <div class="cart-thumb"><img src="${p.img}" alt="${p.name}"></div>
+          <div class="cart-name-block">
+            <h3 class="product-name" style="font-size:.98rem">${p.name}</h3>
+            <span class="muted" style="font-size:.82rem">${formatIDR(p.price)} / pcs</span>
+            <div><button class="cart-remove" data-remove="${p.id}">Hapus</button></div>
+          </div>
+          <div class="qty-control">
+            <button type="button" data-minus="${p.id}">−</button>
+            <input type="number" value="${item.qty}" min="1" max="${p.stock}" data-qty="${p.id}" readonly>
+            <button type="button" data-plus="${p.id}">+</button>
+          </div>
+          <div class="cart-price-block" style="text-align:right;font-weight:700">${formatIDR(p.price * item.qty)}</div>
+        </div>`;
+    }).join("");
+
+    wrap.querySelectorAll("[data-plus]").forEach(b => b.addEventListener("click", () => {
+      const cart = getCart();
+      const item = cart.find(i => i.id === b.dataset.plus);
+      updateCartQty(b.dataset.plus, item.qty + 1);
+      renderCart();
+    }));
+    wrap.querySelectorAll("[data-minus]").forEach(b => b.addEventListener("click", () => {
+      const cart = getCart();
+      const item = cart.find(i => i.id === b.dataset.minus);
+      if (item.qty <= 1) return;
+      updateCartQty(b.dataset.minus, item.qty - 1);
+      renderCart();
+    }));
+    wrap.querySelectorAll("[data-remove]").forEach(b => b.addEventListener("click", () => {
+      removeFromCart(b.dataset.remove);
+      renderCart();
+    }));
+
+    updateSummary();
+  }
+
+  function updateSummary() {
+    const subtotal = cartSubtotal();
+    const shipping = subtotal === 0 ? 0 : (subtotal >= FREE_SHIPPING_MIN ? 0 : SHIPPING_FLAT);
+    const discount = subtotal * appliedDiscountRate;
+    const total = Math.max(subtotal + shipping - discount, 0);
+
+    document.getElementById("sum-subtotal").textContent = formatIDR(subtotal);
+    document.getElementById("sum-shipping").textContent = shipping === 0 && subtotal > 0 ? "Gratis" : formatIDR(shipping);
+    document.getElementById("sum-total").textContent = formatIDR(total);
+
+    const discountRow = document.getElementById("sum-discount-row");
+    if (discount > 0) {
+      discountRow.style.display = "flex";
+      document.getElementById("sum-discount").textContent = "-" + formatIDR(discount);
+    } else {
+      discountRow.style.display = "none";
+    }
+
+    localStorage.setItem("nc_checkout_total", total);
+    localStorage.setItem("nc_checkout_discount_rate", appliedDiscountRate);
+  }
+
+  document.getElementById("promo-apply").addEventListener("click", () => {
+    const code = document.getElementById("promo-input").value.trim().toUpperCase();
+    if (PROMO_CODES[code]) {
+      appliedDiscountRate = PROMO_CODES[code];
+      trackEvent("ecommerce", "apply_promo", code);
+      showToast(`Kode promo ${code} diterapkan (-${PROMO_CODES[code]*100}%)`);
+    } else {
+      appliedDiscountRate = 0;
+      showToast("Kode promo tidak valid");
+    }
+    updateSummary();
+  });
+
+  document.getElementById("checkout-btn").addEventListener("click", () => {
+    if (cartSubtotal() === 0) return;
+    window.location.href = "checkout.html";
+  });
+
+  renderCart();
+</script>
+</body>
+</html>
