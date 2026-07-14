@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nat's Collection — Hijab Premium Bergo, Pasmina & Segi Empat</title>
+<meta name="description" content="Belanja hijab bergo instan, pasmina crinkle, dan segi empat premium — nyaman dipakai, elegan dipandang, langsung dari Nat's Collection.">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/darkmode.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<header id="site-header"></header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <span class="hero-eyebrow">● Koleksi hijab pilihan</span>
+      <h1>Anggun berhijab, nyaman setiap hari.</h1>
+      <p class="lead">Bergo instan, pasmina crinkle, dan segi empat premium — dipilih dari bahan berkualitas agar tetap adem, jatuh rapi, dan mudah dipadupadankan untuk gaya harian maupun momen spesial.</p>
+      <div class="hero-cta">
+        <a href="categories.html" class="btn btn-primary">Jelajahi Koleksi</a>
+        <a href="#produk-pilihan" class="btn btn-secondary">Lihat Produk Pilihan</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <rect width="400" height="400" fill="#3A2E28"/>
+        <defs>
+          <pattern id="hero-motif" width="40" height="40" patternTransform="rotate(20)" patternUnits="userSpaceOnUse">
+            <rect width="40" height="40" fill="#3A2E28"/>
+            <path d="M0 20 Q10 0 20 20 T40 20" stroke="#C08874" stroke-width="3" fill="none" opacity=".8"/>
+            <path d="M0 30 Q10 10 20 30 T40 30" stroke="#8A6F5C" stroke-width="2" fill="none" opacity=".6"/>
+          </pattern>
+        </defs>
+        <rect width="400" height="400" fill="url(#hero-motif)"/>
+        <circle cx="200" cy="200" r="90" fill="#C08874" opacity=".22"/>
+        <circle cx="200" cy="200" r="55" fill="#FBF6F1" opacity=".94"/>
+        <text x="200" y="212" text-anchor="middle" font-family="Fraunces, serif" font-size="20" fill="#3A2E28" font-weight="700">Nat's collection</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<div class="parang-divider"></div>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Mulai dari sini</span>
+        <h2>Belanja per kategori</h2>
+      </div>
+      <a href="categories.html" class="link-btn">Lihat semua &rarr;</a>
+    </div>
+    <div class="cat-grid" id="home-cat-grid"></div>
+  </div>
+</section>
+
+<section class="section" id="produk-pilihan" style="background:var(--paper-2)">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Favorit pelanggan</span>
+        <h2>Produk pilihan</h2>
+      </div>
+    </div>
+    <div class="product-grid" id="featured-grid"></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container about-block center" style="max-width:640px;margin:0 auto">
+    <span class="eyebrow">Kenapa Nat's Collection</span>
+    <h2>Kualitas bahan premium, harga bersahabat</h2>
+    <p class="muted">Setiap hijab kami pilih dari bahan yang adem, tidak mudah kusut, dan jatuhnya rapi — supaya kamu tetap percaya diri seharian. Baca lebih lanjut soal cerita dan model bisnis kami.</p>
+    <a href="about.html" class="btn btn-secondary">Tentang Kami</a>
+  </div>
+</section>
+
+<footer id="site-footer"></footer>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/data.js"></script>
+<script src="js/analytics.js"></script>
+<script src="js/script.js"></script>
+<script src="js/products.js"></script>
+<script src="js/darkmode.js"></script>
+<script>
+  renderHeader("index.html");
+  renderFooter();
+
+  const catGrid = document.getElementById("home-cat-grid");
+  catGrid.innerHTML = CATEGORIES.map(c => `
+    <a class="cat-card" href="categories.html?cat=${c.slug}">
+      <div class="cat-icon" style="background:${CAT_ACCENT[c.slug]}">${c.name[0]}</div>
+      <h3>${c.name}</h3>
+      <p>${c.blurb}</p>
+    </a>`).join("");
+
+  const featured = [...PRODUCTS].sort((a,b) => b.rating - a.rating).slice(0, 8);
+  document.getElementById("featured-grid").innerHTML = featured.map(renderProductCard).join("");
+  bindProductCardEvents();
+</script>
+</body>
+</html>
