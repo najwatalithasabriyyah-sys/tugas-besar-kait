@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout — Nat's Collection</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/darkmode.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<header id="site-header"></header>
+
+<section class="section">
+  <div class="container" id="checkout-container">
+    <span class="eyebrow">Langkah 2 dari 2</span>
+    <h1 style="font-size:clamp(1.9rem,3vw,2.6rem)">Checkout</h1>
+
+    <div class="checkout-layout mt-lg" id="checkout-form-area">
+      <div>
+        <form id="checkout-form" novalidate>
+          <div class="form-card">
+            <h3>Informasi Pengiriman</h3>
+            <div class="form-row">
+              <div class="field" id="f-name">
+                <label for="name">Nama Lengkap</label>
+                <input type="text" id="name" required>
+                <span class="field-error">Nama wajib diisi.</span>
+              </div>
+              <div class="field" id="f-phone">
+                <label for="phone">No. HP</label>
+                <input type="tel" id="phone" required pattern="^[0-9+ ]{9,15}$">
+                <span class="field-error">Masukkan nomor HP yang valid (9–15 digit).</span>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="field full" id="f-email">
+                <label for="email">Email</label>
+                <input type="email" id="email" required>
+                <span class="field-error">Masukkan alamat email yang valid.</span>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="field full" id="f-address">
+                <label for="address">Alamat Lengkap</label>
+                <textarea id="address" rows="3" required></textarea>
+                <span class="field-error">Alamat wajib diisi.</span>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="field" id="f-city">
+                <label for="city">Kota</label>
+                <input type="text" id="city" required>
+                <span class="field-error">Kota wajib diisi.</span>
+              </div>
+              <div class="field" id="f-zip">
+                <label for="zip">Kode Pos</label>
+                <input type="text" id="zip" required pattern="^[0-9]{5}$">
+                <span class="field-error">Kode pos harus 5 digit angka.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-card">
+            <h3>Metode Pembayaran</h3>
+            <p class="muted" style="font-size:.85rem;margin-top:-8px">Simulasi payment gateway (mis. Midtrans). Tidak ada transaksi nyata yang diproses.</p>
+
+            <label class="pay-option">
+              <input type="radio" name="payment" value="qris" checked>
+              <div>
+                <strong>QRIS</strong>
+                <div class="muted" style="font-size:.82rem">Scan & bayar dari aplikasi bank/e-wallet apa pun</div>
+              </div>
+            </label>
+            <div class="pay-detail show" id="detail-qris">
+              <div class="qris-box">
+                <img id="qris-image" src="" alt="Kode QRIS pembayaran">
+                <span class="qris-timer" id="qris-timer">14:59</span>
+                <p class="muted">Buka aplikasi m-banking / e-wallet, pilih Scan QRIS, lalu arahkan kamera ke kode di atas.</p>
+              </div>
+            </div>
+
+            <label class="pay-option">
+              <input type="radio" name="payment" value="va">
+              <div>
+                <strong>Transfer Virtual Account</strong>
+                <div class="muted" style="font-size:.82rem">BCA, BNI, BRI, Mandiri — otomatis terverifikasi</div>
+              </div>
+            </label>
+            <div class="pay-detail" id="detail-va">
+              <div class="field">
+                <label for="va-bank">Pilih Bank</label>
+                <select id="va-bank">
+                  <option>BCA</option><option>BNI</option><option>BRI</option><option>Mandiri</option>
+                </select>
+              </div>
+            </div>
+
+            <label class="pay-option">
+              <input type="radio" name="payment" value="ewallet">
+              <div>
+                <strong>E-Wallet</strong>
+                <div class="muted" style="font-size:.82rem">GoPay, OVO, DANA, ShopeePay</div>
+              </div>
+            </label>
+            <div class="pay-detail" id="detail-ewallet">
+              <div class="field">
+                <label for="ewallet-provider">Pilih E-Wallet</label>
+                <select id="ewallet-provider">
+                  <option>GoPay</option><option>OVO</option><option>DANA</option><option>ShopeePay</option>
+                </select>
+              </div>
+            </div>
+
+            <label class="pay-option">
+              <input type="radio" name="payment" value="card">
+              <div>
+                <strong>Kartu Kredit/Debit</strong>
+                <div class="muted" style="font-size:.82rem">Visa, Mastercard, JCB</div>
+              </div>
+            </label>
+            <div class="pay-detail" id="detail-card">
+              <div class="form-row">
+                <div class="field full" id="f-card-number">
+                  <label for="card-number">Nomor Kartu</label>
+                  <input type="text" id="card-number" placeholder="4111 1111 1111 1111" maxlength="19">
+                  <span class="field-error">Masukkan nomor kartu 16 digit.</span>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="field" id="f-card-exp">
+                  <label for="card-exp">Kedaluwarsa (BB/TT)</label>
+                  <input type="text" id="card-exp" placeholder="08/28" maxlength="5">
+                  <span class="field-error">Format harus BB/TT.</span>
+                </div>
+                <div class="field" id="f-card-cvv">
+                  <label for="card-cvv">CVV</label>
+                  <input type="text" id="card-cvv" placeholder="123" maxlength="3">
+                  <span class="field-error">CVV harus 3 digit.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block" id="place-order-btn">Buat Pesanan</button>
+        </form>
+      </div>
+
+      <aside class="summary-box">
+        <h3>Ringkasan Pesanan</h3>
+        <div id="checkout-item-list" style="margin-bottom:14px"></div>
+        <div class="summary-row"><span>Subtotal</span><span id="co-subtotal">Rp0</span></div>
+        <div class="summary-row"><span>Ongkos Kirim</span><span id="co-shipping">Rp0</span></div>
+        <div class="summary-row" id="co-discount-row" style="display:none;color:var(--teal)"><span>Diskon</span><span id="co-discount">-Rp0</span></div>
+        <div class="summary-row total"><span>Total</span><span id="co-total">Rp0</span></div>
+      </aside>
+    </div>
+
+    <div id="order-success" class="order-success" style="display:none">
+      <div class="check">✓</div>
+      <h2>Pesanan Berhasil Dibuat!</h2>
+      <p class="muted">Nomor pesanan Anda: <strong id="order-id"></strong><br>Kami sudah mengirim konfirmasi ke email Anda (simulasi).</p>
+      <a href="index.html" class="btn btn-primary">Kembali ke Beranda</a>
+    </div>
+  </div>
+</section>
+
+<footer id="site-footer"></footer>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/data.js"></script>
+<script src="js/analytics.js"></script>
+<script src="js/script.js"></script>
+<script src="js/products.js"></script>
+<script src="js/darkmode.js"></script>
+<script>
+  renderHeader("checkout.html");
+  renderFooter();
+
+  const SHIPPING_FLAT = 15000;
+  const FREE_SHIPPING_MIN = 150000;
+  let checkoutTotal = 0;
+
+  function renderOrderSummary() {
+    const cart = getCart();
+    if (cart.length === 0) {
+      window.location.href = "cart.html";
+      return;
+    }
+    const list = document.getElementById("checkout-item-list");
+    list.innerHTML = cart.map(item => {
+      const p = getProductById(item.id);
+      return `<div class="summary-row"><span>${p.name} × ${item.qty}</span><span>${formatIDR(p.price * item.qty)}</span></div>`;
+    }).join("");
+
+    const subtotal = cartSubtotal();
+    const shipping = subtotal >= FREE_SHIPPING_MIN ? 0 : SHIPPING_FLAT;
+    const discountRate = Number(localStorage.getItem("nc_checkout_discount_rate") || 0);
+    const discount = subtotal * discountRate;
+    const total = Math.max(subtotal + shipping - discount, 0);
+    checkoutTotal = total;
+
+    document.getElementById("co-subtotal").textContent = formatIDR(subtotal);
+    document.getElementById("co-shipping").textContent = shipping === 0 ? "Gratis" : formatIDR(shipping);
+    document.getElementById("co-total").textContent = formatIDR(total);
+    const discountRow = document.getElementById("co-discount-row");
+    if (discount > 0) {
+      discountRow.style.display = "flex";
+      document.getElementById("co-discount").textContent = "-" + formatIDR(discount);
+    }
+  }
+  renderOrderSummary();
+
+  /* ---------------- QRIS: generate dummy QR + countdown ---------------- */
+  function renderQrisCode() {
+    const img = document.getElementById("qris-image");
+    if (!img) return;
+    const payload = `NATSCOLLECTION|ORDER-${Date.now()}|AMT:${checkoutTotal}`;
+    img.src = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(payload)}`;
+  }
+  renderQrisCode();
+
+  let qrisSeconds = 15 * 60;
+  let qrisInterval = setInterval(() => {
+    qrisSeconds--;
+    const m = String(Math.floor(qrisSeconds / 60)).padStart(2, "0");
+    const s = String(qrisSeconds % 60).padStart(2, "0");
+    const timerEl = document.getElementById("qris-timer");
+    if (timerEl) timerEl.textContent = `${m}:${s}`;
+    if (qrisSeconds <= 0) clearInterval(qrisInterval);
+  }, 1000);
+
+  /* Toggle payment detail panels */
+  document.querySelectorAll('input[name="payment"]').forEach(radio => {
+    radio.addEventListener("change", () => {
+      document.querySelectorAll(".pay-detail").forEach(d => d.classList.remove("show"));
+      document.getElementById(`detail-${radio.value}`)?.classList.add("show");
+    });
+  });
+
+  /* Card number formatting */
+  const cardNumberInput = document.getElementById("card-number");
+  cardNumberInput.addEventListener("input", () => {
+    cardNumberInput.value = cardNumberInput.value.replace(/\D/g, "").slice(0, 16).replace(/(.{4})/g, "$1 ").trim();
+  });
+  const cardExpInput = document.getElementById("card-exp");
+  cardExpInput.addEventListener("input", () => {
+    let v = cardExpInput.value.replace(/\D/g, "").slice(0, 4);
+    if (v.length > 2) v = v.slice(0, 2) + "/" + v.slice(2);
+    cardExpInput.value = v;
+  });
+
+  /* ---------------- Validation ---------------- */
+  function setValid(fieldId, isValid) {
+    document.getElementById(fieldId).classList.toggle("invalid", !isValid);
+    return isValid;
+  }
+
+  function validateForm() {
+    let ok = true;
+    const name = document.getElementById("name").value.trim();
+    ok = setValid("f-name", name.length >= 2) && ok;
+
+    const phone = document.getElementById("phone").value.trim();
+    ok = setValid("f-phone", /^[0-9+ ]{9,15}$/.test(phone)) && ok;
+
+    const email = document.getElementById("email").value.trim();
+    ok = setValid("f-email", /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) && ok;
+
+    const address = document.getElementById("address").value.trim();
+    ok = setValid("f-address", address.length >= 8) && ok;
+
+    const city = document.getElementById("city").value.trim();
+    ok = setValid("f-city", city.length >= 2) && ok;
+
+    const zip = document.getElementById("zip").value.trim();
+    ok = setValid("f-zip", /^[0-9]{5}$/.test(zip)) && ok;
+
+    const method = document.querySelector('input[name="payment"]:checked').value;
+    if (method === "card") {
+      const num = cardNumberInput.value.replace(/\s/g, "");
+      ok = setValid("f-card-number", /^[0-9]{16}$/.test(num)) && ok;
+      ok = setValid("f-card-exp", /^(0[1-9]|1[0-2])\/[0-9]{2}$/.test(cardExpInput.value)) && ok;
+      const cvv = document.getElementById("card-cvv").value.trim();
+      ok = setValid("f-card-cvv", /^[0-9]{3}$/.test(cvv)) && ok;
+    }
+    return ok;
+  }
+
+  document.getElementById("checkout-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (!validateForm()) {
+      showToast("Periksa kembali data yang belum lengkap");
+      return;
+    }
+    const btn = document.getElementById("place-order-btn");
+    btn.disabled = true;
+    btn.textContent = "Memproses pembayaran...";
+
+    const total = Number(localStorage.getItem("nc_checkout_total") || cartSubtotal());
+    trackEvent("ecommerce", "purchase", "checkout", total);
+
+    // Simulasi delay proses payment gateway
+    setTimeout(() => {
+      const orderId = "NC-" + Date.now().toString().slice(-8);
+      document.getElementById("order-id").textContent = orderId;
+      document.getElementById("checkout-form-area").style.display = "none";
+      document.getElementById("order-success").style.display = "block";
+      localStorage.removeItem("nc_cart");
+      localStorage.removeItem("nc_checkout_total");
+      localStorage.removeItem("nc_checkout_discount_rate");
+      updateCartBadge();
+    }, 1200);
+  });
+</script>
+</body>
+</html>
