@@ -2,7 +2,7 @@
 
 Toko hijab daring (bergo instan, pasmina crinkle, segi empat) — dibangun dengan **HTML, CSS, dan JavaScript murni (vanilla)**, tanpa framework atau library eksternal untuk logika UI.
 
-**Live demo:** `https://<username-github>.github.io/<nama-repo>/` — *ganti dengan URL GitHub Pages setelah deploy (lihat bagian Deployment).*
+**Link Github Pages(Live Website):** `https://najwatalithasabriyyah-sys.github.io/tugas-besar-kait/`
 
 ---
 
