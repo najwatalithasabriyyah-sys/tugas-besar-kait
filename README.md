@@ -6,6 +6,9 @@ Toko hijab daring (bergo instan, pasmina crinkle, segi empat) — dibangun denga
 
 **Link Repository Github:** (https://github.com/najwatalithasabriyyah-sys/tugas-besar-kait)
 
+**Link Youtube:** (https://youtube.com/shorts/ioMFVVGJVuc?si=P9ms7bwmtE5Q7FFL)
+
+
 ---
 
 ## Daftar Isi
