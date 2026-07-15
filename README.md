@@ -2,8 +2,8 @@
 
 Toko hijab daring (bergo instan, pasmina crinkle, segi empat) — dibangun dengan **HTML, CSS, dan JavaScript murni (vanilla)**, tanpa framework atau library eksternal untuk logika UI.
 
-**Link Github Pages(Live Website):** `https://najwatalithasabriyyah-sys.github.io/tugas-besar-kait/`
-
+**Link Github Pages (Live Website):**[https://najwatalithasabriyyah-sys.github.io/tugas-besar-kait/]([text](https://najwatalithasabriyyah-sys.github.io/tugas-besar-kait/))
+**Link Repository Github:**[https://github.com/najwatalithasabriyyah-sys/tugas-besar-kait](https://github.com/najwatalithasabriyyah-sys/tugas-besar-kait) 
 ---
 
 ## Daftar Isi
