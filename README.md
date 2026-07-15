@@ -127,8 +127,8 @@ Lalu buka `http://localhost:8000`.
 3. Buat commit-commit bermakna secara bertahap (lihat contoh riwayat commit yang disarankan di bawah) — minimal 8–10 commit.
 4. Di GitHub: **Settings → Pages → Source: Deploy from a branch → Branch: `main` / `root`** → Save.
 5. Tunggu beberapa menit, lalu akses situs di:
-   `https://<username>.github.io/<nama-repo>/`
-6. Tempel URL live tersebut di bagian atas README ini.
+   (https://najwatalithasabriyyah-sys.github.io/tugas-besar-kait/)
+7. Tempel URL live tersebut di bagian atas README ini.
 
 ### Contoh riwayat commit yang disarankan
 ```
